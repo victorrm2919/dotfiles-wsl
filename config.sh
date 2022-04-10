@@ -2,6 +2,7 @@
 
 time_print=2
 time_default=4
+nameDotFiles=${PWD##*/}
 
 spinner()
 {
@@ -34,9 +35,11 @@ then
   git config --global user.email "victorruiz524@gmail.com"
   git config --global user.name "Victor Ruiz"
 
-  ln -s -f ~/dotfiles/zshrc ~/.zshrc
-  ln -s -f ~/dotfiles/.p10k.zsh ~/.p10k.zsh
-  ln -s -f ~/dotfiles/node-version ~/.node-version
+  printf "\n\n[+] Creating Symlinks... " & sleep $time_print & spinner  
+  printf "\n"
+  ln -s -f ~/$nameDotFiles/zshrc ~/.zshrc
+  ln -s -f ~/$nameDotFiles/.p10k.zsh ~/.p10k.zsh
+  ln -s -f ~/$nameDotFiles/node-version ~/.node-version
   
   mkdir -p ~/.local/share/plugins/zsh-sudo
   wget -O ~/.local/share/plugins/zsh-sudo/sudo.plugin.zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
@@ -99,6 +102,7 @@ then
   printf "\n\n[+] Installing fnm... " & sleep $time_print & spinner 
   printf "\n"
   curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash
+  export PATH=$HOME/.fnm:$PATH
   eval $(fnm env)
   
   printf "\n\n[+] Installing Nodejs and npm...  " & sleep $time_print & spinner 
@@ -117,7 +121,6 @@ then
   printf "\n\[+] Installing theme for neovim... " & sleep $time_print & spinner 
   printf "\n"
   git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-  nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
+  nvim +'hi NormalFloat guibg=#1e222a' +PackerSync & 
+  echo "=======================Process Complete!!! :) ======================="
 fi
-
-echo "=======================Process Complete!!! :) ======================="
