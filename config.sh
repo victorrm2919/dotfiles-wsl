@@ -2,7 +2,7 @@
 
 time_print=2
 time_default=4
-nameDotFiles=${PWD##*/}
+SCRIPTDIR=$(cd $(dirname "${BASH_SOURCE[0]}") >/dev/null && pwd)
 
 spinner()
 {
@@ -37,9 +37,9 @@ then
 
   printf "\n\n[+] Creating Symlinks... " & sleep $time_print & spinner  
   printf "\n"
-  ln -s -f ~/$nameDotFiles/zshrc ~/.zshrc
-  ln -s -f ~/$nameDotFiles/.p10k.zsh ~/.p10k.zsh
-  ln -s -f ~/$nameDotFiles/node-version ~/.node-version
+  ln -s -f $SCRIPTDIR/zshrc $HOME/.zshrc
+  ln -s -f $SCRIPTDIR/.p10k.zsh $HOME/.p10k.zsh
+  ln -s -f $SCRIPTDIR/node-version $HOME/.node-version
   
   mkdir -p ~/.local/share/plugins/zsh-sudo
   wget -O ~/.local/share/plugins/zsh-sudo/sudo.plugin.zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
