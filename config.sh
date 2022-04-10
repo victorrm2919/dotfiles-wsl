@@ -19,8 +19,6 @@ spinner()
     printf "    \b\b\b\b"
 }
 
-sh=$(echo $SHELL)
-
 if [[ `uname` == "Linux"   ]]
 then
   printf "=========[Linux detected]========= \nConfiguring terminal, please wait ..." & sleep $time_print & spinner 
@@ -41,16 +39,12 @@ then
   ln -s -f $SCRIPTDIR/.p10k.zsh $HOME/.p10k.zsh
   ln -s -f $SCRIPTDIR/node-version $HOME/.node-version
   
-  mkdir -p ~/.local/share/plugins/zsh-sudo
-  wget -O ~/.local/share/plugins/zsh-sudo/sudo.plugin.zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-
   printf "\n\n[+] Update respositories... " & sleep $time_print & spinner 
   
   printf "\n"
   sudo apt-get update && sudo apt-get -y upgrade
 
   printf "\n\n[+] Installing zsh... " & sleep $time_print & spinner 
-  
   printf "\n"
   sudo apt -y install zsh
 
@@ -64,7 +58,9 @@ then
   echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> $HOME/.zprofile
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  sudo apt -y install build-essential
+
+  printf "\n\n[+] Installing Oh My Zsh!...  " & sleep $time_print & spinner 
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   printf "\n\n[+] Installing zInit... " & sleep $time_print & spinner 
   printf "\n"
@@ -72,7 +68,7 @@ then
 
   printf "\n\n[+] Configure Utilities in ZSH... " & sleep $time_print & spinner 
   printf "\n"
-  brew install gcc
+  sudo apt -y install build-essential
 
   printf "\n\n[+] Installing bat... " & sleep $time_print & spinner 
   printf "\n"

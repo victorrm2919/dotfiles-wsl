@@ -17,6 +17,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# Oh my zsh
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
 #ZStyles
 
 # ---[ Completition system ]-------------------------------------------
@@ -137,10 +141,9 @@ zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
 zstyle ':acceptline:*' rehash true
 
 # Plugins
-plugins=(git z)
+plugins=(git z sudo)	
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
-source $HOME/.local/share/plugins/zsh-sudo/sudo.plugin.zsh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
