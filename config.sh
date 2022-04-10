@@ -121,6 +121,7 @@ then
   printf "\n\[+] Installing theme for neovim... " & sleep $time_print & spinner 
   printf "\n"
   git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-  nvim +'hi NormalFloat guibg=#1e222a' +PackerSync & 
+  nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
+  
   echo "=======================Process Complete!!! :) ======================="
 fi
