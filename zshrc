@@ -141,9 +141,10 @@ zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
 zstyle ':acceptline:*' rehash true
 
 # Plugins
-plugins=(git z sudo)	
+plugins=(git z)	
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
+source ~/.oh-my-zsh/plugins/sudo/sudo.plugin.zsh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
